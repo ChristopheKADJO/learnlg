@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}LearnLg | Welcome {% endblock title %}
+
+{% block content %}
+
+<section class="flex flex-col justify-center h-screen items-center text-gray-500 font-semibold mx-6">
+
+    <nav class="mt-9 flex flex-col w-full justify-end items-end mb-8">
+        <a href="{% url 'account:logout' %}" class="text-gray-800 hover:bg-gray-300 border font-semibold duration-150 bg-gray-200 p-3 mx-12 rounded-lg text-sm my-12">Log out</a>
+    </nav>
+
+    <h1 class="text-3xl text-gray-500 font-semibold">Welcome <span class="font-bold text-red-500">{{ user.firstname }}</span> 👋!</h1>
+
+    <div class="flex flex-col justify-center items-start">
+        <p class=" mt-16">Congratulations, you have succeeded in deploying locally 👌!</p>
+        <br><br>
+        <p class="">This is only one part of the project. <br> This part includes the following points:</p>
+        <br>
+        <ul class="text-sm">
+            <li>
+                → Account creation
+            </li>
+            <li>
+                → Log in
+            </li>
+            <li>
+                → Log out
+            </li>
+            <li>
+                → Delete account
+            </li>
+            <li>
+                → Setting up a custom file for 404 and 403 errors<br>
+            </li>
+        </ul>
+        <br><br>
+        <p>See the complete project: <a href="https://learnlg.pythonanywhere.com/" target="_blank" class="text-red-500">LearnLg</a></p>
+    </div>
+    <div class="flex justify-between items-center" style="width: 300px;">
+        <a class="font-semibold text-gray-800 p-4 bg-gray-200 rounded-lg hover:bg-gray-300 duration-150 mr-7" target="_blank" href="https://christophekadjo.com">Portfolio</a>
+        <a href="{% url 'account:delete' user.id %}" class="bg-red-600 font-semibold text-sm text-white ml-6 p-4 rounded-lg hover:bg-red-700 duration-150 ml-7">Delete account</a>
+    </div>
+    
+  
+</section>
+
+
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %} LearnLg | Delete My Account{% endblock title %}
+
+{% block content %}
+
+<form method="post" class="flex justify-center items-center flex-col mt-16">
+    {% csrf_token %}
+
+    <div class="w-full bg-gray-50 flex flex-col items-center justify-center pt-16">
+        <h1 class="text-center text-gray-500 text-3xl font-bold">Are you sure you want
+            <br> to delete the your account?</h1>
+            <div class="w-1/2 my-16 flex flew-col">
+                <input
+                  type="submit"
+                  value="Yes"
+                  class="mr-5 cursor-pointer w-full block bg-red-600 text-white font-semibold rounded-lg px-2 py-2 mt-6"
+                />
+                <a href="{% url 'account:welcome' %}" class="text-center ml-5 cursor-pointer w-full bg-gray-200 border text-black font-semibold rounded-lg px-2 py-2 mt-6">No</a>
+            </div>
+    </div>
+    
+</div>
+</form>
+{% endblock content %}
+

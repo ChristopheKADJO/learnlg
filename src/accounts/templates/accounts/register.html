@@ -1,0 +1,107 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}LearnLg | Register Page {% endblock title %}
+
+{% block content %}
+
+
+<section class="flex flex-col md:flex-row h-screen items-center">
+
+  <div class="bg-white hidden lg:block w-full md:w-1/2 xl:w-1/2 h-screen">
+    <img
+      src="https://images.unsplash.com/photo-1550592704-6c76defa9985?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+      alt=""
+      class="w-full h-full object-cover"
+    />
+  </div>
+  
+  <div
+  class="bg-white w-full lg:max-w-full lg:w-full xl:w-1/2 h-screen px-6 lg:px-16 xl:px-12 flex items-center justify-center">
+    <div class="w-full h-100">
+      <h1 class="text-xl md:text-2xl font-bold text-gray-800 leading-tight mt-12">
+        Create an account
+      </h1>
+
+      <form class="mt-6" method="POST">
+
+        {% csrf_token %}
+
+
+        
+        {% if form.errors %}
+          <div class="bg-red-100 text-red-800 px-4 py-3 my-2" role="alert">
+            {% for field, errors in form.errors.items %}
+              {% for error in errors %}
+                {% if field == "email" %}
+                <p class="text-sm">
+                  → <span class="font-bold">Email Adress:</span> {{ error }}
+                </p>
+                {% elif field == "firstname" %}
+                <p class="text-sm">
+                  → <span class="font-bold">Firstname:</span> {{ error }}
+                </p>
+                {% elif field == "password1" %}
+                <p class="text-sm">
+                  → <span class="font-bold">Password:</span> {{ error }}
+                </p>
+                {% elif field == "password2" %}
+                <p class="text-sm">
+                  → <span class="font-bold">Confirm Password:</span> {{ error }}
+                </p>
+                {% else %}
+                <p class="text-sm">
+                  → <span class="font-bold">Captcha:</span> <span>An error has occurred. Are you a human?</span>
+                </p>
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+          <div class="flex flex-col sm:flex-row lg:flex-row xl:flex-row w-full items-center box-border">
+            <div class="w-full sm:w-1/2 sm:mr-2">
+              <label class="block text-gray-700 ml-1">Email Address<span class="text-red-600 font-bold">*</span></label>
+              {{form.email}}
+            </div>
+            <div class="w-full sm:w-1/2 sm:ml-2 mt-2 sm:mt-0">
+              <label class="block text-gray-700 ml-1">Firstname<span class="text-red-600 font-bold">*</span></label>
+              {{form.firstname}}
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row lg:flex-row xl:flex-row w-full items-center box-border sm:mt-2 mb-8">
+            <div class="w-full sm:w-1/2 sm:mr-2 mt-2 sm:mt-0">
+              <label class="block text-gray-700 ml-1">Password<span class="text-red-600 font-bold">*</span></label>
+              {{form.password1}}
+            </div>
+            <div class="w-full sm:w-1/2 sm:ml-2 mt-2 sm:mt-0">
+              <label class="block text-gray-700 ml-1">Confirm Password<span class="text-red-600 font-bold">*</span></label>
+              {{form.password2}}
+            </div> 
+            <div>
+              {{form.captcha}}
+            </div>
+          </div>
+          
+          <input
+          type="submit"
+          value="Register"
+          class="cursor-pointer w-full block bg-gray-800 hover:bg-gray-900 duration-150 text-white font-semibold rounded-lg px-4 py-3"/>
+        </form>
+
+      <p class="my-8">
+        You have an account?
+        <a href="{% url 'account:login' %}" class="text-gray-800 font-semibold"
+          >Let's login</a
+        >
+      </p>
+    </div>
+  </div>
+
+  
+</section>
+
+<script src="{% static 'js/custom-register.js' %}"></script>
+
+{% endblock content %}
